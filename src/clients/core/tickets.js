@@ -412,28 +412,30 @@ class Tickets extends Client {
 
   /**
    * Merge multiple tickets into a target ticket.
+   * @param {number} ticketId - The ID of the target ticket that will host the merged tickets.
    * @param {object} mergeData - The merge data containing ticket IDs and optional comments.
-   * @param {Array<number>} mergeData.ids - An array of ticket IDs to merge into the target ticket. The first ID is the target ticket.
+   * @param {Array<number>} mergeData.ids - An array of ticket IDs to merge into the target ticket.
    * @param {string} [mergeData.target_comment] - Private comment to add to the target ticket. This comment is optional but strongly recommended.
    * @param {string} [mergeData.source_comment] - Private comment to add to the source tickets. This comment is optional but strongly recommended.
    * @param {boolean} [mergeData.target_comment_is_public] - Whether comments in the target ticket are public or private.
    * @param {boolean} [mergeData.source_comment_is_public] - Whether comments in the source tickets are public or private.
    * @returns {Promise<{response: object, result: Ticket}>} A promise that resolves with the merged ticket object.
-   * @throws {Error} If `ids` is not provided or is not a valid array.
+   * @throws {Error} If `ticketId` is not provided or if `ids` is not provided or is not a valid array.
    * @see {@link https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#merge-tickets}
    * @example
    * // Merge multiple tickets into a target ticket
+   * const targetTicketId = 123;
    * const mergeData = {
-   *   ids: [123, 456, 789],
+   *   ids: [456, 789],
    *   target_comment: 'Merging tickets 456 and 789 into this ticket',
    *   source_comment: 'This ticket has been merged',
    *   target_comment_is_public: false,
    *   source_comment_is_public: false
    * };
-   * const mergedTicket = await client.tickets.merge(mergeData);
+   * const mergedTicket = await client.tickets.merge(targetTicketId, mergeData);
    */
-  async merge(mergeData) {
-    return this.post(['tickets', 'merge'], mergeData);
+  async merge(ticketId, mergeData) {
+    return this.post(['tickets', ticketId, 'merge'], mergeData);
   }
 
   /**

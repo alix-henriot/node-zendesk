@@ -97,7 +97,8 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "docs:deploy-github-pages": "npm run build && npm run docs:code && npm run docs:build",
-    "release": "git push origin --follow-tags"
+    "release": "git push origin --follow-tags",
+    "prepare": "npm run build"
   },
   "author": "Farrin Reid <blakmatrix@gmail.com>",
   "contributors": [

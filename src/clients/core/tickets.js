@@ -421,7 +421,7 @@ class Tickets extends Client {
    * @param {boolean} [mergeData.source_comment_is_public] - Whether comments in the source tickets are public or private.
    * @returns {Promise<{response: object, result: Ticket}>} A promise that resolves with the merged ticket object.
    * @throws {Error} If `ticketId` is not provided or if `ids` is not provided or is not a valid array.
-   * @see {@link https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#merge-tickets}
+   * @see {@link https://developer.zendesk.com/api-reference/ticketing/tickets/tickets/#merge-tickets-into-target-ticket}
    * @example
    * // Merge multiple tickets into a target ticket
    * const targetTicketId = 123;
